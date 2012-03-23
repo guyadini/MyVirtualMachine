@@ -1,0 +1,8 @@
+This C++ project implements a family of virtual machines.
+Each virtual machine has a set of registers, stack and memory, takes textual code, and emulates it on the machine.
+
+
+Current files:
+=============
+vm.cpp/h - for the virtual machine (compiled into a shared object through the Makefile).
+test.c - some simple file which is compiled into assembly - to have something to feed the machine.
