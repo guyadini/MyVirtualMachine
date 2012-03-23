@@ -1,8 +1,13 @@
 This C++ project implements a family of virtual machines.
 Each virtual machine has a set of registers, stack and memory, takes textual code, and emulates it on the machine.
 
+* A note about using shared objects in Linux: Make sure to "export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH", so that driver.out can find vm.so
+
 
 Current files:
 =============
 vm.cpp/h - for the virtual machine (compiled into a shared object through the Makefile).
 test.c - some simple file which is compiled into assembly - to have something to feed the machine.
+driver.cpp - a driver to run some tests.
+Makefile
+README

@@ -10,7 +10,6 @@ using namespace std;
 
 #endif
 
-//TODO: declare that it can throw an exception
 //Translate all textual instructions into actual Instruction objects
 void VirtualMachine::addInstructions(const vector<string> &instVec){
 	for (auto si = instVec.begin(); si!=instVec.end(); si++){
