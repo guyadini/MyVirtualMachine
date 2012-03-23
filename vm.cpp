@@ -38,6 +38,8 @@ void X86Machine::addInstFromStr(const string s){
 	//The execute() function must change the stack pointer, the stack 
 	//(by storing/popping register values), and the registers.
 	//The ret instruction must terminate.
-	DEBUG_PRINT("got instruction " << s)	
+	//DEBUG_PRINT("got instruction " << s)	
+	
+	throw InvalidInstructionException("Can't parse instruction: " + s);
 
 }

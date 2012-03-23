@@ -1,7 +1,7 @@
 #include <map>
 #include <string>
 #include <vector>
-
+#include <exception>
 
 //not to pollute the namespace
 using std::string;
@@ -21,10 +21,6 @@ public:
 //Abstract virtual machine class
 class VirtualMachine{
 	
-	//TODO: inherit from an appropriate subclass
-	class InvalidInstructionException{
-	
-	};
 
 protected:
 	map<string,int> registers; //maps register name to value
@@ -33,6 +29,11 @@ protected:
 	map<int,int> stack; //maps from locations relative to stack base, to corresponding values
 //protected functions	
 	virtual void addInstFromStr(const string s) = 0;
+//nested exception classes
+	struct InvalidInstructionException{
+		string msg;
+		InvalidInstructionException(string s) {msg = s;}
+	};
 
 public:
 	enum InstStatus{GOOD, BAD,EOI};
