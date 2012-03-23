@@ -7,8 +7,8 @@ using namespace std;
 int main(){
 	X86Machine vm("");
 	vector<string> instructions;
-	string nextS;
-	while ( (cin>>nextS) ) instructions.push_back(nextS);
+	char nextS[256];
+	while ( (cin.getline(nextS,255)) ) instructions.push_back(string(nextS));
 	vm.addInstructions(instructions);	
 	return 0;	
 }

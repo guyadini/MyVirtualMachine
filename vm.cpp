@@ -49,12 +49,20 @@ void X86Machine::addInstFromStr(const string s){
 	//The execute() function must change the stack pointer, the stack 
 	//(by storing/popping register values), and the registers.
 	//The ret instruction must terminate.
+	try{
+		DEBUG_PRINT("got instruction " << s)	
+		vector<string> instTokens;
+		boost::split(instTokens,s, boost::is_any_of(" \t,"));
+		//TODO - get rid of length 0 tokens
+		//TODO - separate the case of labels (starting with ".")
+		string commandName = instTokens[0];
+		if (instructionSet.count(commandName)==0) 
+			throw InvalidInstructionException("Unrecognized instruction: " + commandName);
+	}
+
+	catch(InvalidInstructionException e){
+		DEBUG_PRINT(e.msg);
+		throw(e);
 	
-	DEBUG_PRINT("got instruction " << s)	
-	vector<string> instTokens;
-	boost::split(instTokens,s, boost::is_any_of(" \t,"));
-
-
-	throw InvalidInstructionException("Can't parse instruction: " + s);
-
+	}
 }
