@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-	X86Machine vm;
+	X86Machine vm("");
 	vector<string> instructions;
 	string nextS;
 	while ( (cin>>nextS) ) instructions.push_back(nextS);

@@ -13,6 +13,13 @@ using namespace std;
 
 #endif
 
+//create the instructionSet variable according to input file
+void VirtualMachine::parseInstructionSetFile(const string instFileName){
+
+}
+
+
+
 //Translate all textual instructions into actual Instruction objects
 void VirtualMachine::addInstructions(const vector<string> &instVec){
 	DEBUG_PRINT("Entering addInstructions\n")
@@ -46,6 +53,7 @@ void X86Machine::addInstFromStr(const string s){
 	DEBUG_PRINT("got instruction " << s)	
 	vector<string> instTokens;
 	boost::split(instTokens,s, boost::is_any_of(" \t,"));
+
 
 	throw InvalidInstructionException("Can't parse instruction: " + s);
 

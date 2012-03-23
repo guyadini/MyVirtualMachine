@@ -22,6 +22,12 @@ public:
 
 }; 
 
+//abstract factory for instructions
+struct InstFactory{
+	virtual Instruction* makeInst() = 0;	
+};
+
+
 //Abstract virtual machine class
 class VirtualMachine{
 	
@@ -31,8 +37,16 @@ protected:
 	vector<Instruction> code;
 	vector<Instruction>::iterator nextInst;
 	map<int,int> stack; //maps from locations relative to stack base, to corresponding values
+	//TODO: since these are pointers, they will all have to be deleted in the destructor!
+	map<string,InstFactory*> instructionSet;
 //protected functions	
 	virtual void addInstFromStr(const string s) = 0;
+	virtual void parseInstructionSetFile(const string instFileName);
+	VirtualMachine(const string instFileName){
+		parseInstructionSetFile(instFileName);
+	}
+
+
 //nested exception classes
 	struct InvalidInstructionException{
 		string msg;
@@ -53,13 +67,9 @@ public:
 class X86Machine : public VirtualMachine{
 protected:
 	virtual void addInstFromStr(const string s);
-
+	
 public:
-	X86Machine(){
-		
-
-	}
-
+	X86Machine(const string instFileName) : VirtualMachine(instFileName) {}
 
 };
 
