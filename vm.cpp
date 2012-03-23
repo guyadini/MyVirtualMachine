@@ -1,4 +1,14 @@
 #include "vm.h"
+#include <iostream>
+
+using namespace std;
+#define DEBUG
+
+#ifdef DEBUG
+
+#define DEBUG_PRINT(x) cout << x << endl;
+
+#endif
 
 //TODO: declare that it can throw an exception
 //Translate all textual instructions into actual Instruction objects
@@ -28,5 +38,6 @@ void X86Machine::addInstFromStr(const string s){
 	//The execute() function must change the stack pointer, the stack 
 	//(by storing/popping register values), and the registers.
 	//The ret instruction must terminate.
+	DEBUG_PRINT("got instruction " << s)	
 
 }
