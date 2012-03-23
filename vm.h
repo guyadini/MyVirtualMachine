@@ -3,6 +3,10 @@
 #include <vector>
 #include <exception>
 
+std::vector<std::string> strs;
+
+
+
 //not to pollute the namespace
 using std::string;
 using std::vector;

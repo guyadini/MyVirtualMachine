@@ -1,5 +1,8 @@
 #include "vm.h"
 #include <iostream>
+#include <boost/algorithm/string.hpp>
+
+
 
 using namespace std;
 #define DEBUG
@@ -12,7 +15,9 @@ using namespace std;
 
 //Translate all textual instructions into actual Instruction objects
 void VirtualMachine::addInstructions(const vector<string> &instVec){
+	DEBUG_PRINT("Entering addInstructions\n")
 	for (auto si = instVec.begin(); si!=instVec.end(); si++){
+		DEBUG_PRINT("Adding instruction " << *si)
 		this->addInstFromStr(*si);
 	}
 
@@ -37,8 +42,11 @@ void X86Machine::addInstFromStr(const string s){
 	//The execute() function must change the stack pointer, the stack 
 	//(by storing/popping register values), and the registers.
 	//The ret instruction must terminate.
-	//DEBUG_PRINT("got instruction " << s)	
 	
+	DEBUG_PRINT("got instruction " << s)	
+	vector<string> instTokens;
+	boost::split(instTokens,s, boost::is_any_of(" \t,"));
+
 	throw InvalidInstructionException("Can't parse instruction: " + s);
 
 }

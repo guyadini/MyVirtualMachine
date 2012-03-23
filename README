@@ -3,6 +3,10 @@ Each virtual machine has a set of registers, stack and memory, takes textual cod
 
 * A note about using shared objects in Linux: Make sure to "export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH", so that driver.out can find vm.so
 
+* Example usage: 
+	make
+	export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+	./driver.out < test.s
 
 Current files:
 =============
