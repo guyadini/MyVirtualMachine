@@ -1,7 +1,7 @@
 #include "vm.h"
 #include <iostream>
 #include <boost/algorithm/string.hpp>
-
+#include <algorithm>
 
 
 using namespace std;
@@ -53,8 +53,12 @@ void X86Machine::addInstFromStr(const string s){
 		DEBUG_PRINT("got instruction " << s)	
 		vector<string> instTokens;
 		boost::split(instTokens,s, boost::is_any_of(" \t,"));
-		//TODO - get rid of length 0 tokens
 		//TODO - separate the case of labels (starting with ".")
+		
+		//remove length 0 tokens
+		instTokens.erase(remove_if(instTokens.begin(),instTokens.end(),
+			[](string s) {return s.size()==0;}), instTokens.end() );			
+	
 		string commandName = instTokens[0];
 		if (instructionSet.count(commandName)==0) 
 			throw InvalidInstructionException("Unrecognized instruction: " + commandName);
